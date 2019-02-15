@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+repositories {
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "soft.ubi.hu.daveapp"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "BASE_URL", "\"http://10.130.4.58:8080\""
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.google.code.gson:gson:2.8.4'
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.0.0"
+    testImplementation 'androidx.arch.core:core-testing:2.0.0'
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.11"
+
+
+    implementation "android.arch.navigation:navigation-fragment:1.0.0-alpha09" // use -ktx for Kotlin
+    implementation "android.arch.navigation:navigation-ui:1.0.0-alpha09" // use -ktx for Kotlin
+
+    // optional - Test helpers
+    // this library depends on the Kotlin standard library
+    androidTestImplementation "android.arch.navigation:navigation-testing:1.0.0-alpha08"
+}
+repositories {
+    mavenCentral()
+}
